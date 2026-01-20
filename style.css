@@ -1,0 +1,384 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button:focus {
+  outline: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+body.golden-theme {
+  background: radial-gradient(circle at center, #000 60%, #111 100%);
+  color: #FFD700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Canvas */
+canvas {
+  background-color: #111;
+  border: 3px solid #FFD700;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.9), inset 0 0 15px rgba(255,215,0,0.4);
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+canvas:hover {
+  transform: scale(1.02);
+}
+
+/* Container */
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+/* UI */
+#ui {
+  background: #111;
+  border: 2px solid #FFD700;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(255,215,0,0.8);
+  text-align: center;
+  min-width: 140px;
+}
+
+
+
+#ui h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFD700;
+  margin-bottom: 12px;
+  transform: none;
+  letter-spacing: 2px;
+}
+#score {
+  font-size: 34px;
+  font-weight: 800;
+  color: #FFD700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 1);
+  margin-bottom: 15px;   /* 👈 dodaj razmak ispod score */
+}
+
+
+
+/* Pulse animacija */
+.pulse {
+  animation: pulse 0.4s ease;
+}
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.15); }
+}
+
+/* Restart button */
+#replay {
+  margin-top: 15px;      /* 👈 dodatni razmak iznad dugmeta */
+  font-size: 14px;
+  padding: 12px 28px;
+  background: linear-gradient(145deg, #FFD700, #b8860b);
+  border: none;
+  color: #000;
+  border-radius: 30px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  text-transform: uppercase;
+}
+
+
+#replay:hover {
+  background: linear-gradient(145deg, #b8860b, #FFD700);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+  transform: translateY(-2px);
+}
+#replay svg {
+  margin-right: 8px;
+}
+
+/* Leaderboard box */
+#leaderboard {
+  padding: 20px;
+  border: 2px solid #FFD700;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #111, #222);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  min-width: 160px;
+  text-align: center;
+}
+#leaderboard h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #FFD700;
+  text-shadow: 0 0 15px rgba(255,215,0,1);
+  letter-spacing: 2px;
+}
+#scores-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#scores-list li {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-weight: 600;
+  font-size: 15px;
+}
+#scores-list li span.place {
+  color: #FFD700;
+  text-shadow: 0 0 5px rgba(255,215,0,0.6);
+}
+#scores-list li span.score {
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255,255,255,0.6);
+}
+
+/* Snake colors (theme buttons) */
+#snake-colors {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#snake-colors button {
+  background: #111;
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+#snake-colors button:hover {
+  background: #FFD700;
+  color: #000;
+  box-shadow: 0 0 15px rgba(255,215,0,1);
+  transform: translateY(-2px);
+}
+
+/* Author */
+#author {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #FFD700;
+  text-transform: uppercase;
+}
+#author span {
+  font-size: 12px;
+  margin-left: 20px;
+  color: #fff;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.6);
+}
+#author h1 {
+  font-size: 36px;
+  color: #FFD700;
+  text-shadow: 0 0 20px rgba(255,215,0,1), 0 0 40px rgba(255,215,0,0.8);
+  letter-spacing: 3px;
+}
+
+/* START button */
+#start {
+  margin-top: 15px;
+  font-size: 14px;
+  padding: 12px 28px;
+  background: linear-gradient(145deg, #32CD32, #FFD700); /* zlatno-zelena kombinacija */
+  border: none;
+  color: #000;
+  border-radius: 30px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  text-transform: uppercase;
+}
+
+#start:hover {
+  background: linear-gradient(145deg, #FFD700, #32CD32);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+  transform: translateY(-2px);
+}
+
+#start svg {
+  margin-right: 8px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 250px; /* igra levo, sidebar desno */
+  gap: 30px;
+  align-items: start;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  background: #111;
+  border: 2px solid #FFD700;
+  padding: 25px 45px;
+  border-radius: 15px;
+  text-align: center;
+  color: #FFD700;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+}
+.modal-content h2 {
+  margin-bottom: 15px;
+  font-size: 26px;
+  text-shadow: 0 0 15px rgba(255,215,0,1);
+}
+.modal-content p {
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.modal-content button {
+  padding: 10px 22px;
+  background: linear-gradient(145deg, #FFD700, #b8860b);
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #000;
+  transition: all 0.3s ease;
+}
+.modal-content button:hover {
+  background: linear-gradient(145deg, #b8860b, #FFD700);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+  transform: translateY(-2px);
+}
+
+ 
+/* Responsive za mobilne uređaje */
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;   /* jedna kolona */
+    gap: 20px;
+  }
+
+  .game-area {
+    align-items: center;
+  }
+
+  .sidebar {
+    flex-direction: column;       /* sidebar ide u kolonu */
+    align-items: center;
+    gap: 20px;
+  }
+
+  #ui, #leaderboard {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  #author {
+    position: static;
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  /* Touch kontrole samo na mobilnom */
+  #touch-controls {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  #touch-controls {
+    display: flex; /* prikaži samo na mobilnom */
+  }
+}
+
+#touch-controls {
+  display: none;   /* sakrij default */
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+
+#touch-controls .middle-row {
+  display: flex;
+  gap: 40px;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(145deg, #FFD700, #b8860b);
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: linear-gradient(145deg, #b8860b, #FFD700);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+  transform: scale(1.1);
+}

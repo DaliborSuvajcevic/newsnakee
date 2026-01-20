@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="golden-theme">
+  <div id="app" class="noselect">
+
+    <!-- Naslov -->
+    <header id="author">
+      <h1>SNAKE</h1>
+      <span>by Golden Circle</span>
+    </header>
+
+    <!-- Glavni layout -->
+    <div class="layout">
+      
+      <!-- Leva strana: igra -->
+      <div class="game-area">
+        <!-- Canvas -->
+        <canvas id="game" width="400" height="400"></canvas>
+
+        <!-- Touch kontrole za mobilne uređaje -->
+        <div id="touch-controls">
+          <button class="control-btn" data-dir="up"><i class="fas fa-arrow-up"></i></button>
+          <div class="middle-row">
+            <button class="control-btn" data-dir="left"><i class="fas fa-arrow-left"></i></button>
+            <button class="control-btn" data-dir="right"><i class="fas fa-arrow-right"></i></button>
+          </div>
+          <button class="control-btn" data-dir="down"><i class="fas fa-arrow-down"></i></button>
+        </div>
+
+        <!-- Izbor boja / tema -->
+        <div id="snake-colors">
+          <button data-theme="golden">Golden</button>
+          <button data-theme="neon">Neon</button>
+          <button data-theme="retro">Retro</button>
+          <button data-theme="matrix">Matrix</button>
+        </div>
+      </div>
+
+      <!-- Desna strana: UI + leaderboard -->
+      <div class="sidebar">
+        <!-- UI Score + kontrole -->
+        <div id="ui">
+          <h2>SCORE</h2>
+          <span id="score">00</span>
+          <div id="controls">
+            <button id="start"><i class="fas fa-play"></i> START</button>
+            <button id="replay"><i class="fas fa-redo"></i> RESTART</button>
+          </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard">
+          <h2>TOP</h2>
+          <ol id="scores-list"></ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Game Over -->
+    <div id="game-over-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <h2>Game Over</h2>
+        <p id="final-score"></p>
+        <button id="close-modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skripta (samo script.js kao glavni engine) -->
+  <script src="script.js"></script>
+</body>
+</html>
